@@ -143,6 +143,112 @@
 /* Add more styles as per your design requirements */
 
 
+.user-message {
+    text-align: right;
+    margin-right: 10px;
+    /* Additional styling for user messages */
+}
+
+.ai-message {
+    text-align: left;
+    margin-left: 10px;
+    /* Additional styling for AI messages */
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: 300px;
+}
+
+/* Add styling for differentiation, like background color or text color */
+.user-message, .ai-message {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #daf8e3; /* Light green background for user messages */
+}
+
+.ai-message {
+    align-self: flex-start;
+    background-color: #f1f0f0; /* Light grey background for AI messages */
+}
+
+.userMessage {
+    text-align: left;
+    margin-right: 50%;
+    background-color: #f0f0f0;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.botMessage {
+    text-align: right;
+    margin-left: 50%;
+    background-color: #d1e8ff;
+    padding: 5px;
+    border-radius: 10px;
+}
+.ai-chat-container {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.userMessage {
+    background-color: #4CAF50;
+    color: white;
+    align-self: flex-start;
+}
+
+.botMessage {
+    background-color: #2196F3;
+    color: white;
+    align-self: flex-end;
+}
+
+.input-container {
+    padding-top: 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .center-container {
     display: flex;
     align-items: center;
