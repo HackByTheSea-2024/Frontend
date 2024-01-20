@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import './App.css';
-import Login from './pages/Login';
+import Login from './Pages/Login';
+import HomePageP from './Pages/HomeP';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('login');
+  const [currentPage, setCurrentPage] = useState('/');
 
   let content;
   switch (currentPage) {
+    case '/':
+      content = <HomePageP/>;
+      break;
     case 'login':
       content = <Login />;
       break;

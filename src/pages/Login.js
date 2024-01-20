@@ -27,10 +27,14 @@ export default function Login() {
       setError({ text: "", error: false });
       const res = await npiNumberApi(npiNum);
       console.log(res)
-      // if (res[0]==1) {
-      //   setLoginSuccessful(true);
-      //   window.location.href = redirectUrl;
-      // }
+      if (res[0]==1) {
+        setLoginSuccessful(true);
+        console.log("succussful login")
+        //window.location.href = redirectUrl;
+      }
+      else{
+        console.log("unsuccessful")
+      }
       setLoading(false);
     }
   };
