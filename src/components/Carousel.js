@@ -1,4 +1,5 @@
 import React from "react";
+import FormCard from "./patient/FormCard";
 
 const Carousel = (props) => {
     const [current, setCurrent] = React.useState(0);
@@ -62,7 +63,7 @@ const Carousel = (props) => {
                                       }
                             }
                         >
-                            test
+                            <FormCard data={images[index]} />
                         </div>
                     );
                 })}

@@ -5,7 +5,18 @@ import "../carousel.css";
 import { getPatientForms } from "../../Api";
 
 function PatientForms() {
-    getPatientForms();
+    const [forms, setForms] = useState([
+        "https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    ]);
+
+    const fetchFormsData = async () => {
+        const data = await getPatientForms();
+        setForms(data);
+    };
+
+    useEffect(() => {
+        fetchFormsData();
+    }, []);
 
     return (
         <div
@@ -31,13 +42,7 @@ function PatientForms() {
                 Personal Health Analysis Forms
             </p>
 
-            <Carousel
-                data={[
-                    "https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                    "https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                    "https://images.pexels.com/photos/4091975/pexels-photo-4091975.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-                ]}
-            />
+            <Carousel data={forms} />
         </div>
     );
 }
