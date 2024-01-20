@@ -9,9 +9,9 @@ function AIChat() {
     const [isSpeakerActive, setIsSpeakerActive] = useState(false); // State to manage speaker icon
     const [conversation, setConversation] = useState([
         {
-            sender: "user",
+            sender: "AI",
             message:
-                "Hi, I’m your personal health analyst. I help you fill out forms to make sure your doctor is up to date on your health.",
+                "Hello, I am your AI medical assistant. My purpose is to provide your doctor with useful information for your diagnosis. Can you please describe any symptoms you're currently experiencing?",
         },
     ]);
 
@@ -23,12 +23,18 @@ function AIChat() {
         setIsSpeakerActive(!isSpeakerActive); // Toggle the speaker state
     };
 
-    const fetchResponse = async (userMessage) => {
+    const fetchResponse = async () => {
         try {
-            const response = await getAiResponseApi(userMessage);
+            let strconvo = JSON.parse(JSON.stringify(conversation));
+            for (let i = 0; i < strconvo.length; i++) {
+                strconvo[i] = `${strconvo[i].sender}\\t${strconvo[i].message}`;
+            }
+            console.log(strconvo.join("\\n"));
+
+            const response = await getAiResponseApi(strconvo.join("\\n"));
             setConversation((prev) => [
                 ...prev,
-                { sender: "user", message: response },
+                { sender: "AI", message: response },
             ]);
         } catch (error) {
             console.error("Error fetching AI response:", error);
@@ -40,10 +46,10 @@ function AIChat() {
         if (userMessage) {
             setConversation((prev) => [
                 ...prev,
-                { sender: "bot", message: userMessage },
+                { sender: "patient", message: userMessage },
             ]);
             setUserInput("");
-            await fetchResponse(userMessage);
+            await fetchResponse();
         }
     };
 
@@ -62,7 +68,7 @@ function AIChat() {
                         <div
                             key={index}
                             className={`message ${
-                                chat.sender === "user"
+                                chat.sender === "AI"
                                     ? "userMessage"
                                     : "botMessage"
                             }`}
