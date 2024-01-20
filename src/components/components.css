@@ -16,6 +16,7 @@
 .largeFont{
     font-size: 80px;
     font-weight: bold;
+    line-height: 90px;
 }
 
 .mediumFont{
@@ -61,7 +62,41 @@
 }
 
 .navBar{
-    font-weight:800;
+    font: weight 16px;;
     font-size:90%;
     margin-top: .7%;
+    font-family: 'Poppins', sans-serif;
+    color: #212650;
+
 }
+
+.mainLink{
+    font: bold;
+    font-size:34px;
+    margin-top: .7%;
+    font-family: 'Poppins', sans-serif;
+    color: #212650;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh; /* Adjust the height as needed */
+}
+
+.bottom-image {
+    position: absolute;
+    bottom: 0;
+    right: 0; /* or left: 0; depending on where you want the image */
+}
+
+/* components.css */
+
+.full-height-container {
+    height: 100vh;
+    width: 100vw; /* 100% of the viewport height */
+    overflow: hidden; /* Hide overflow to prevent scrolling */
+    display: flex; /* Flex layout to manage inner content */
+    flex-direction: row; /* Direction of content */
+    /* Add other styles as necessary */
+}
+

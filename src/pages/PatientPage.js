@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import Home from "../components/Home";
+import PatientPortal from "../components/patient/PatientPortal";
 import NavBar from "../components/nav/NavBar";
 
 
-export default function HomeP() {
+export default function PatientPage() {
 
 
     return(
         <div className="full-height-container gradient-background">
         <div style={{display:"flex", flexDirection:"column"}}>
             <div style={{marginBottom:150}}><NavBar/></div>
-            <Home/>
+            <PatientPortal/>
         </div>
         </div>
     );
