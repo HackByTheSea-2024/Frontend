@@ -42,13 +42,17 @@ function AIChat(props) {
                 return;
             }
 
-            if (results[currResult].isFinal) {
-                console.log("New Result:", results[currResult]);
-                setText(text + results[currResult][0].transcript);
-                setTemp("");
-                setCurrResult(currResult + 1);
-            } else {
-                setTemp(results[currResult][0].transcript);
+            try {
+                if (results[currResult].isFinal) {
+                    console.log("New Result:", results[currResult]);
+                    setText(text + results[currResult][0].transcript);
+                    setTemp("");
+                    setCurrResult(currResult + 1);
+                } else {
+                    setTemp(results[currResult][0].transcript);
+                }
+            } catch (err) {
+                console.log(err);
             }
         };
     });
