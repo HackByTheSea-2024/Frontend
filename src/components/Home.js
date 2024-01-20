@@ -12,13 +12,17 @@ export default function Home() {
             window.location.href = '/patient'; 
         }
         else{
-            window.location.href = '/patientlogin'; 
+            window.location.href = '/patient/login'; 
         }
     };
 
     const navigateToDoctorPage = () => {
-        window.location.href = '/doctor'; 
-        
+        if(auth?._id != undefined){
+            window.location.href = '/doctor'; 
+        }
+        else{
+            window.location.href = '/doctor/login'; 
+        }
     };
 
     return(
