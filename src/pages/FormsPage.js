@@ -5,13 +5,32 @@ import PatientForms from "../components/patient/PatientForms";
 
 export default function DoctorPage() {
     return (
-        <div className="full-height-container gradient-background">
+        <div
+            className="full-height-container gradient-background"
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+            }}
+        >
             <div style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{ marginBottom: 40 }}>
+                <div style={{ marginBottom: 0 }}>
                     <NavBar />
                 </div>
                 <PatientForms />
             </div>
+            <a
+                style={{
+                    display: "block",
+                    width: "400px",
+                    fontWeight: "bold",
+                    height: "50px",
+                }}
+                className="roundedBar h-full mainFont"
+                href="/"
+            >
+                New Personal Health Analysis
+            </a>
         </div>
     );
 }
