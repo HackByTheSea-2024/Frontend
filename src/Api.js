@@ -8,6 +8,7 @@ const endpoints = {
   getDoctorPatients: "/api/patient/ofDoctor",
   getDoctorName:"/api/doctor/firstName",
   getAiResponse:"/api/response",
+  getPatientData:"/api/patient",
   getForms: "/api/forms/patient",
 };
 
@@ -32,6 +33,18 @@ export const getMedicationApi = async () => {
     } catch (err) {
         console.error({ err });
     }
+};
+
+export const getPatientDataApi = async () => {
+  let exampleID = "65ab8a02bbdc95ede8711ade";
+  let message = url + endpoints.getPatientData + "?_id=" + exampleID;
+  try {
+      const res = await axios.get(message);
+      console.log(res.data);
+      return res.data;
+  } catch (err) {
+      console.error({ err });
+  }
 };
 
 export const getDoctorPatientApi = async () => {

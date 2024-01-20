@@ -4,25 +4,36 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
-import { getMedicationApi, getFirstNameApi } from "../../Api";
+import { getMedicationApi, getFirstNameApi, getPatientDataApi } from "../../Api";
 import { Table } from "antd";
+import useAuth from "../hooks/useAuth";
 
 export default function PatientPortal() {
+    const {auth} = useAuth();
     const fetchNameData = async () => {
         const res = await getFirstNameApi();
         setFirstName(res);
     };
 
+   // console.log(auth._id)
+    const fetchPatientData = async () => {
+        const res = await getPatientDataApi();
+        setPatientData(res);
+        console.log(res.DOB);
+    }
     const [firstName, setFirstName] = useState("");
 
     const [counter, setCounter] = useState(0);
     const [currentBPM, setcurrentBPM] = useState(60);
     const [averageBPM, setaverageBPM] = useState(75);
     const [data, setData] = useState([]);
+    const [patientData, setPatientData] = useState([]);
+
 
     useEffect(() => {
         fetchData();
         fetchNameData();
+        fetchPatientData();
     }, []);
 
     const fetchData = async () => {
@@ -208,8 +219,15 @@ export default function PatientPortal() {
                     {firstName}'s Portal
                 </p>
 
-                <div className="roundedBar mt-20">
-                    Some text in a rounded rectangular bar
+                <div style={{ display: "flex", flexDirection: "row", justifyContent:"space-around" }} className="roundedBar mt-20">
+                    <div>Date Of Birth: {patientData.DOB}</div>
+                  
+                    <div>Sex: {patientData.sex}</div>
+                   
+                    <div>Height: {patientData.height} inches</div>
+                    
+                    <div>Weight: {patientData.weight} pounds</div>
+                  
                 </div>
 
                 {/* Other content */}
