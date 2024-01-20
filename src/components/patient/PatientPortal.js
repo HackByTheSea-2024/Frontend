@@ -242,7 +242,7 @@ export default function PatientPortal() {
                         <div style={{flex:2}}>
                         <div style={{display: "flex", flexDirection: "column", height:"100%"}}className="graph-container ">
                         <div style={{flex:2}}></div>
-                        <div style={{height: '500px',flex:5,alignSelf:"center", justifySelf:"center"}} className="w-full">
+                        <div style={{height: '10px',flex:5,alignSelf:"center", justifySelf:"center"}} className="w-full">
                          <Line data={lineGraphData} options={lineGraphOptions} />
                          </div>
                          <div style={{flex:2}}></div>
@@ -264,7 +264,7 @@ export default function PatientPortal() {
                         </div>
                         
                     </div>
-                    <div className="mainFont">
+                    <div style={{fontWeight: "bold"}} className="mainFont">
                         <p>
                             Feeling Unwell?
                         </p>
