@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../components/components.css";
 import PatientRow from "./PatientRow";
+import { getDoctorPatientApi, getDoctorNameApi } from "../../Api";
 
 function DoctorPortal() {
-    const [firstName, setFirstName] = useState("Jai");
+
+    const [firstName, setFirstName] = useState("");
+    const [data, setData] = useState([]);
+    
+    const fetchDoctorData = async () => {
+        const res = await getDoctorPatientApi();
+        setData(res);
+    }
+    const fetchDoctorName = async () => {
+        const res = await getDoctorNameApi();
+        setFirstName(res);
+    }
+    useEffect(() => {
+ 
+        fetchDoctorData();
+        fetchDoctorName();
+      
+    },[]);
+
+    
+
+
+   
 
     return (
         <div
@@ -54,3 +77,4 @@ function DoctorPortal() {
 }
 
 export default DoctorPortal;
+
