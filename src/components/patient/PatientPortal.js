@@ -70,8 +70,8 @@ export default function PatientPortal() {
                 return [65, 70, 80, 65, 60, 75, 82, 86, 88, 75, 56, 69];
             case 1:
                 return [
-                    97.5, 100.5, 98.5, 97.5, 100.5, 98.5, 97.5, 100.5, 98.5,
-                    97.5, 100.5, 98.5,
+                    97.5, 100.5, 98.5, 97.5, 102.5, 100.5, 97.5, 98.5, 98.5,
+                    97.5, 99.5, 98.5,
                 ];
             case 2:
                 return [98, 97, 99, 96, 98, 97, 95, 96, 98, 99, 97, 96];
@@ -205,6 +205,26 @@ export default function PatientPortal() {
         }
     };
 
+    const getUnits = () => {
+        switch (counter) {
+            case 0:
+                return "BPM";
+            case 1:
+                return "degrees F";
+            case 2:
+                return "%";
+            case 3:
+                return "ms";
+            case 4:
+                return "hours";
+            case 5:
+                return "hours";
+            // Add more cases as needed
+            default:
+                return "Default Text";
+        }
+    };
+
     return (
         <div
             style={{
@@ -224,7 +244,7 @@ export default function PatientPortal() {
                   
                     <div>Sex: {patientData.sex}</div>
                    
-                    <div>Height: {patientData.height} inches</div>
+                    <div>Height: {parseInt(patientData.height/12)}'{patientData.height % 12}"</div>
                     
                     <div>Weight: {patientData.weight} pounds</div>
                   
@@ -313,13 +333,13 @@ export default function PatientPortal() {
                             <div>
                                 <p>Current</p>
                                 <p style={{ fontWeight: "bold" }}>
-                                    {currentBPM} BPM
+                                    {currentBPM} {getUnits()}
                                 </p>
                             </div>
                             <div>
                                 <p>Average</p>
                                 <p style={{ fontWeight: "bold" }}>
-                                    {averageBPM} BPM
+                                    {averageBPM} {getUnits()}
                                 </p>
                             </div>
                         </div>
