@@ -17,12 +17,6 @@ function DoctorPortal() {
         const res = await getDoctorNameApi();
         setFirstName(res);
     }
-    const formatHeight = (inches) => {
-        const feet = Math.floor(inches / 12);
-        const remainingInches = inches % 12;
-        return `${feet}'${remainingInches}"`; // Returns the height in feet and inches
-    };
-    
     useEffect(() => {
  
         fetchDoctorData();
@@ -57,13 +51,17 @@ function DoctorPortal() {
             dataIndex: "height",
             key: "height",
             responsive: ["sm", "md", "lg", "xl"],
-            render: (heightInInches) => <h4 className="text-[15px]">{formatHeight(heightInInches)}</h4>,
+            render: (name) => <h4 className="text-[15px]">{name}</h4>,
           },
     ]
     
 
-
-   
+    const handleRowClick = (record) => {
+       window.location.href = '/patientDoctorPortal'; 
+    };
+    
+       
+    
 
     return (
         <div
@@ -107,7 +105,9 @@ function DoctorPortal() {
                     
                     columns={columns}
                     dataSource={data}
-    
+                    onRow={(record) => ({
+                        onClick: () => handleRowClick(record), // Handle row click
+                      })}
             
                     
                     />
