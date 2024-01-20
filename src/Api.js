@@ -7,6 +7,7 @@ const endpoints = {
   getFirstName: "/api/patient/firstName",
   getDoctorPatients: "/api/patient/ofDoctor",
   getDoctorName:"/api/doctor/firstName",
+  getAiResponse:"/api/response",
 };
 
 export const npiNumberApi = async (number) => {
@@ -23,6 +24,18 @@ export const npiNumberApi = async (number) => {
   export const getMedicationApi = async () => {
     let exampleID = "65ab8a02bbdc95ede8711ade"
     let message = url + endpoints.getMedication +"?_id=" + exampleID;
+      try{
+        const res = await axios.get(message);
+        console.log(res.data)
+        return res.data;
+      } catch (err) {
+        console.error({ err });
+      }
+  }
+
+  export const getAiResponseApi = async (context) => {
+
+    let message = url + endpoints.getAiResponse +"?context=" + context;
       try{
         const res = await axios.get(message);
         console.log(res.data)
