@@ -39,7 +39,7 @@ function App() {
             content = <FormsPage />;
             break;
         case "/patient/SignUp":
-            content = <PatientSignUp />;
+            content = <PatientSignUpPage />;
             break;
         case "/chat":
             content = <ChatPage listener={recognizer} />;
