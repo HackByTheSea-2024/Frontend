@@ -13,6 +13,13 @@
     font-family: 'Poppins', sans-serif;
     color: #212650;
   }
+
+.mainFontBold {
+    font-family: 'Poppins', sans-serif;
+    color: #212650;
+    font-weight: bolder;
+}
+  
   
 .largeFont{
     font-size: 80px;
