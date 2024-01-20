@@ -26,6 +26,16 @@ function AIChat() {
     const fetchResponse = async () => {
         try {
             let strconvo = JSON.parse(JSON.stringify(conversation));
+            if (userInput) {
+                strconvo = JSON.parse(
+                    JSON.stringify(
+                        conversation.concat([
+                            { sender: "patient", message: userInput.trim() },
+                        ])
+                    )
+                );
+            }
+
             for (let i = 0; i < strconvo.length; i++) {
                 strconvo[i] = `${strconvo[i].sender}\\t${strconvo[i].message}`;
             }
