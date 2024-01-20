@@ -5,6 +5,7 @@ import HomePageP from "./pages/HomeP";
 import PatientPage from "./pages/PatientPage";
 import SpeechRecog from "./pages/SpeechRecog";
 import DoctorPortal from "./pages/DoctorPage";
+import PatientSignUp from "./pages/PatientSignUp";
 
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -27,6 +28,9 @@ function App() {
             break;
         case "/doctor":
             content = <DoctorPortal />;
+            break;
+        case "/patientlogin":
+            content = <PatientSignUp />;
             break;
         // Add more cases for other pages
         default:
