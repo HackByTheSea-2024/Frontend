@@ -24,6 +24,9 @@ function App() {
     case '/patient':
       content = <PatientPage />;
       break;
+      case '/home':
+      content = <HomePageP />;
+      break;
     // Add more cases for other pages
     default:
       content = <div>Page not found</div>;

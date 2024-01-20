@@ -3,12 +3,12 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import vitalSyncLogo from "../../images/vitalSyncLogo.png";
 import "../../components/components.css"
-import RightNav from './RightNav';
+
 
 
 export default function NavBar() {
     return (
-        <div>
+        <div style={{display:"flex", flexDirection:"row", justifyContent: "space-between", width:window.innerWidth}}>
 
             <Nav style={{display:"flex", flexDirection:"row"}} className="navBar floatLeft ml-10 mb-50">
                 {/* Existing links */}
@@ -26,8 +26,9 @@ export default function NavBar() {
                 <Nav.Link className="mr-20 mt-6" href="/mission">Doctor Portal</Nav.Link>
 
             </Nav>
-            <RightNav/>
-
+            <Nav className="navBar pt-5">
+                <Nav.Link className="mr-20 mt-6" href="/home">Account</Nav.Link>
+            </Nav>
         </div>
     );
 }

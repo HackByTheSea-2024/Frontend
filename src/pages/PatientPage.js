@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PatientPortal from "../components/patient/PatientPortal";
 import NavBar from "../components/nav/NavBar";
+import "../components/components.css";
 
 
 export default function PatientPage() {
