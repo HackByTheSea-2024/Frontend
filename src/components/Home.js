@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import './components.css'; 
 import doctorImage from "../images/doctor.png"
+import useAuth from "./hooks/useAuth"
 
 export default function Home() {
+    const {auth} = useAuth()
 
     const navigateToPatientPage = () => {
-        window.location.href = '/patient'; 
+        console.log(auth?._id)
+        if(auth?._id != undefined){
+            window.location.href = '/patient'; 
+        }
+        else{
+            window.location.href = '/loginpatient'; 
+        }
     };
 
     return(

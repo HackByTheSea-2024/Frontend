@@ -4,10 +4,11 @@ import Login from "./pages/Login";
 import HomePageP from "./pages/HomeP";
 import PatientPage from "./pages/PatientPage";
 import SpeechRecog from "./pages/SpeechRecog";
+import DoctorPortal from "./pages/DoctorPage";
+import PatientSignUp from "./pages/PatientSignUp";
 import DoctorPage from "./pages/DoctorPage";
 import ChatPage from "./pages/ChatPage";
 import FormsPage from "./pages/FormsPage";
-
 
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -33,6 +34,9 @@ function App() {
             break;
         case "/patient/forms":
             content = <FormsPage />;
+            break;
+        case "/patientlogin":
+            content = <PatientSignUp />;
             break;
         // Add more cases for other pages
         default:
