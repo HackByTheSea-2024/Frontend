@@ -10,6 +10,7 @@ import DoctorPage from "./pages/DoctorPage";
 import ChatPage from "./pages/ChatPage";
 import FormsPage from "./pages/FormsPage";
 import Home from "./components/Home";
+import PatientDoctorPage from "./pages/PatientDoctorPage";
 
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -41,6 +42,9 @@ function App() {
             break;
         case "/chat":
             content = <ChatPage listener={recognizer} />;
+            break;
+        case "/patientDoctorPortal":
+            content = <PatientDoctorPage/>;
             break;
         // Add more cases for other pages
         default:
