@@ -7,7 +7,7 @@
   justify-content: center;
   background-color: white;
   padding: 0rem 1rem;
-  background-color: rgba(0,0,0,.25);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .button-prev,
@@ -35,7 +35,7 @@
 .gallery-track {
   aspect-ratio: 168/100;
   position: relative;
-  width: 80%;
+  width: 50%;
   overflow: hidden;
   height: 500px;
 }
