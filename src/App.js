@@ -4,7 +4,9 @@ import Login from "./pages/Login";
 import HomePageP from "./pages/HomeP";
 import PatientPage from "./pages/PatientPage";
 import SpeechRecog from "./pages/SpeechRecog";
-
+import DoctorSignUp from "./pages/DoctorSignUp";
+import DoctorLogin from "./pages/DoctorLogin";
+import PatientLogin from "./pages/PatientLogin";
 import PatientSignUpPage from "./pages/PatientSignUpPage";
 import DoctorPage from "./pages/DoctorPage";
 import ChatPage from "./pages/ChatPage";
@@ -37,14 +39,22 @@ function App() {
         case "/patient/forms":
             content = <FormsPage />;
             break;
-        case "/patientlogin":
-            content = <PatientSignUpPage />;
+        case "/patient/SignUp":
+            content = <PatientSignUp />;
             break;
         case "/chat":
             content = <ChatPage listener={recognizer} />;
             break;
         case "/patientDoctorPortal":
             content = <PatientDoctorPage/>;
+        case "/doctor/SignUp":
+            content = <DoctorSignUp />;
+            break;
+        case "/doctor/login":
+            content = <DoctorLogin />;
+            break;
+        case "/patient/login":
+            content = <PatientLogin />;
             break;
         // Add more cases for other pages
         default:
