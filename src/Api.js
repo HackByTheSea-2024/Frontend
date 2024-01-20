@@ -7,7 +7,7 @@ const endpoints = {
     getFirstName: "/api/patient/firstName",
     getDoctorPatients: "/api/patient/ofDoctor",
     getDoctorName: "/api/doctor/firstName",
-    getForms: "/api/forms",
+    getForms: "/api/forms/patient",
 };
 
 export const npiNumberApi = async (number) => {
@@ -69,13 +69,19 @@ export const getDoctorNameApi = async () => {
     }
 };
 
-export const getPatientForms = async () => {
+export const getPatientForms = async (patientID) => {
     let sampleID = "65ab8a02bbdc95ede8711ade";
     let message = url + endpoints.getForms + "?_id=" + sampleID;
     try {
         const res = await axios.get(message);
-        console.log(res.data);
-        return res.data;
+
+        let data = [];
+        for (let i in res.data) {
+            data.push(res.data[i]);
+        }
+        console.log(data);
+
+        return data;
     } catch (err) {
         console.error({ err });
     }
