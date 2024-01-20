@@ -41,7 +41,7 @@ const Carousel = (props) => {
         bubbles[current].style.borderColor = "white";
     }, []);
     return (
-        <div className="gallery-container">
+        <div className="gallery-container" style={{ height: "500px" }}>
             <span className="button-prev" onClick={prevImage}>
                 chevron_left
             </span>
