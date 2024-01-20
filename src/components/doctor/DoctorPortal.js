@@ -37,6 +37,7 @@ function DoctorPortal() {
                     width: "1367px",
                     height: "556px",
                     display: "flex",
+                    padding: "43px",
                 }}
             >
                 <PatientRow
