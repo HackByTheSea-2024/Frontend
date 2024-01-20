@@ -27,7 +27,7 @@
 }
 
 .textentry {
-    border-radius: 30px;
+    border-radius: 30px !important;
     box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.25);
     background-color: #FFFFFF !important;
 }
@@ -102,4 +102,14 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+}
+
+.rectangularDropdown {
+    appearance: none; /* Remove default arrow */
+    padding: 5px 10px; /* Adjust padding as needed */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 4px; /* Add border radius */
+    background: white; /* Set background color */
+    width: 100%; /* Full width */
+    height: 38px; /* Adjust height as needed */
 }

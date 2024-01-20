@@ -12,8 +12,13 @@ export default function Home() {
             window.location.href = '/patient'; 
         }
         else{
-            window.location.href = '/loginpatient'; 
+            window.location.href = '/patientlogin'; 
         }
+    };
+
+    const navigateToDoctorPage = () => {
+        window.location.href = '/doctor'; 
+        
     };
 
     return(
@@ -31,7 +36,7 @@ export default function Home() {
                 <div className="pt-10">
                     <button className="mainButton mr-10" onClick={navigateToPatientPage}>I'm a Patient</button>
 
-                    <button className="mainButton">I'm a Doctor</button>
+                    <button className="mainButton mr-10" onClick={navigateToDoctorPage}>I'm a Doctor</button>
                 </div>
                 
             </div>
