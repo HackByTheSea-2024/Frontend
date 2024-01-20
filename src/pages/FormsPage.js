@@ -3,7 +3,7 @@ import NavBar from "../components/nav/NavBar";
 import "../components/components.css";
 import PatientForms from "../components/patient/PatientForms";
 
-export default function DoctorPage() {
+export default function FormsPage() {
     return (
         <div
             className="full-height-container gradient-background"
@@ -26,10 +26,10 @@ export default function DoctorPage() {
                     fontWeight: "bold",
                     height: "50px",
                     paddingTop: "13px",
-                    marginTop: "25px"
+                    marginTop: "25px",
                 }}
                 className="roundedBar h-full mainFont"
-                href="/"
+                href="/chat"
             >
                 New Personal Health Analysis
             </a>

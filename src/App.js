@@ -4,13 +4,14 @@ import Login from "./pages/Login";
 import HomePageP from "./pages/HomeP";
 import PatientPage from "./pages/PatientPage";
 import SpeechRecog from "./pages/SpeechRecog";
-import PatientSignUp from "./pages/PatientSignUp";
 import DoctorSignUp from "./pages/DoctorSignUp";
 import DoctorLogin from "./pages/DoctorLogin";
 import PatientLogin from "./pages/PatientLogin";
+import PatientSignUpPage from "./pages/PatientSignUpPage";
 import DoctorPage from "./pages/DoctorPage";
 import ChatPage from "./pages/ChatPage";
 import FormsPage from "./pages/FormsPage";
+import Home from "./components/Home";
 
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -23,7 +24,7 @@ function App() {
     let content;
     switch (window.location.pathname) {
         case "/":
-            content = <ChatPage />;
+            content = <HomePageP />;
             break;
         case "/patient":
             content = <PatientPage />;
@@ -39,6 +40,9 @@ function App() {
             break;
         case "/patient/SignUp":
             content = <PatientSignUp />;
+            break;
+        case "/chat":
+            content = <ChatPage listener={recognizer} />;
             break;
         case "/doctor/SignUp":
             content = <DoctorSignUp />;
