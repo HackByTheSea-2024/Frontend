@@ -4,6 +4,7 @@ import "../components.css";
 function FormCard(props) {
     console.log(props.data);
     return (
+
         <div style={{display: "flex", flexDirection: "column", textAlign: "left", marginTop: "30px", marginBottom: "30px", marginLeft: "70px", marginRight: "70px"}}>
             <div style={{padding: "15px"}} >
                 <p className="mainFontBold"> Introduction: </p>
@@ -25,7 +26,7 @@ function FormCard(props) {
                 {"Dr. Garg"}
                 
             </div>
-            
+           
         </div>
     );
 }
