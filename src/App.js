@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import './App.css';
-import Login from './Pages/Login';
-import HomePageP from './Pages/HomeP';
+import Login from './pages/Login';
+import HomePageP from './pages/HomeP';
+import PatientPage from './pages/PatientPage';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('/');
+  
 
   let content;
-  switch (currentPage) {
+  switch (window.location.pathname) {
     case '/':
       content = <HomePageP/>;
       break;
-    case 'login':
-      content = <Login />;
+    case '/patient':
+      content = <PatientPage />;
       break;
     // Add more cases for other pages
     default:
