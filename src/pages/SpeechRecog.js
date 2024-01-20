@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 
 export default function SpeechRecog(props) {
     const [isRecording, setRecording] = useState(false);
@@ -51,4 +51,4 @@ export default function SpeechRecog(props) {
             </button>
         </>
     );
-}
+}*/

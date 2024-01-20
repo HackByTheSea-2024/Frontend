@@ -26,10 +26,10 @@ export default function FormsPage() {
                     fontWeight: "bold",
                     height: "50px",
                     paddingTop: "13px",
-                    marginTop: "25px"
+                    marginTop: "25px",
                 }}
                 className="roundedBar h-full mainFont"
-                href="/"
+                href="/chat"
             >
                 New Personal Health Analysis
             </a>
