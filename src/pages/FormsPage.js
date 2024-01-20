@@ -25,6 +25,8 @@ export default function DoctorPage() {
                     width: "400px",
                     fontWeight: "bold",
                     height: "50px",
+                    paddingTop: "13px",
+                    marginTop: "25px"
                 }}
                 className="roundedBar h-full mainFont"
                 href="/"
