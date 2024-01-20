@@ -3,7 +3,7 @@ import NavBar from "../components/nav/NavBar";
 import "../components/components.css";
 import PatientForms from "../components/patient/PatientForms";
 
-export default function DoctorPage() {
+export default function FormsPage() {
     return (
         <div
             className="full-height-container gradient-background"

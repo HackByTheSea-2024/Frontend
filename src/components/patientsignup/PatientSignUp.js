@@ -23,6 +23,28 @@ export default function PatientSignUp() {
     const [blood, setBlood] = useState('');
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
+    const [condition1, setCondition1] = useState('');
+    const [condition2, setCondition2] = useState('');
+    const [condition3, setCondition3] = useState('');
+    const [description1, setDescription1] = useState('');
+    const [description2, setDescription2] = useState('');
+    const [description3, setDescription3] = useState('');
+    const [type1, setType1] = useState('');
+    const [type2, setType2] = useState('');
+    const [type3, setType3] = useState('');
+    const [alergies, setAlergies] = useState('');
+    const [perscription1, setPerscription1] = useState('');
+    const [perscription2, setPerscription2] = useState('');
+    const [perscription3, setPerscription3] = useState('');
+    const [dosage1, setDosage1] = useState('');
+    const [dosage2, setDosage2] = useState('');
+    const [dosage3, setDosage3] = useState('');
+    const [frequency1, setFrequency1] = useState('');
+    const [frequency2, setFrequency2] = useState('');
+    const [frequency3, setFrequency3] = useState('');
+
+
+    const typeOptions = ["Select Type", "Family Disease", "New Disease"];
 
     function handleSetFirstName(event) {
         setFirstName(event.target.value);
@@ -79,6 +101,67 @@ export default function PatientSignUp() {
         setWeight(event.target.value);
     }
 
+    function handleSetCondition1(event) {
+        setCondition1(event.target.value);
+    }
+    function handleSetCondition2(event) {
+        setCondition2(event.target.value);
+    }
+    function handleSetCondition3(event) {
+        setCondition3(event.target.value);
+    }
+    function handleSetDescription3(event) {
+        setDescription3(event.target.value);
+    }
+    function handleSetDescription1(event) {
+        setDescription1(event.target.value);
+    }
+    function handleSetDescription2(event) {
+        setDescription2(event.target.value);
+    }
+    function handleSetType1(event) {
+        setType1(event.target.value);
+    }
+    function handleSetType2(event) {
+        setType2(event.target.value);
+    }
+    function handleSetType3(event) {
+        setType3(event.target.value);
+    }
+    function handleSetPerscription1(event) {
+        setPerscription1(event.target.value);
+    }
+    function handleSetPerscription2(event) {
+        setPerscription2(event.target.value);
+    }
+    function handleSetPerscription3(event) {
+        setPerscription3(event.target.value);
+    }
+
+    function handleSetFrequency1(event) {
+        setFrequency1(event.target.value);
+    }
+    function handleSetFrequency2(event) {
+        setFrequency2(event.target.value);
+    }
+    function handleSetFrequency3(event) {
+        setFrequency3(event.target.value);
+    }
+
+    function handleSetDosage1(event) {
+        setDosage1(event.target.value);
+    }
+    function handleSetDosage2(event) {
+        setDosage2(event.target.value);
+    }
+    function handleSetDosage3(event) {
+        setDosage3(event.target.value);
+    }
+
+    function handleSetAlergies(event) {
+        setAlergies(event.target.value);
+    }
+
     function calculateAge(dob) {
         const [month, day, year] = dob.split('/').map(num => parseInt(num, 10));
         const birthYear = year < 100 ? 2000 + year : year; // Adjust for two-digit year format
@@ -96,6 +179,7 @@ export default function PatientSignUp() {
             lastName: String(lastname), 
             firstName: String(firstname)
         };
+        console.log(calculateAge(DOB))
         axios.post('https://vitalsyncbackend-c6oszgtd6a-uw.a.run.app/api/authPatient', data)
           .then (response => {
             data = { email: String(email), username: String(username), password: String(password), age: calculateAge(DOB), lastName: String(lastname), firstName: String(firstname), DOB: DOB, prescriptions: [], pastHistory: null, vitals: null, weight: parseInt(weight), height: parseInt(height), sex: String(sex), doctors: []};
@@ -139,7 +223,7 @@ export default function PatientSignUp() {
                                 <div className="outerDiv">
                                     <Form.Group className="formGroup1">
                                         <Form.Label className="textlabel textLabel1">First Name</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={firstname} onChange={handleSetFirstName} type="text" />
+                                        <Form.Control className="textentry" autoComplete="off" value={firstname} onChange={handleSetFirstName} type="text" placeholder="First Name"/>
                                     </Form.Group>
 
                                     <Form.Group className="formGroup2">
@@ -152,12 +236,12 @@ export default function PatientSignUp() {
                                 <div className="outerDiv">
                                     <Form.Group className="formGroup1">
                                         <Form.Label className="textlabel textLabel1">Last Name</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={lastname} onChange={handleSetLastName} type="text" />
+                                        <Form.Control className="textentry" autoComplete="off" value={lastname} onChange={handleSetLastName} type="text" placeholder="Last Name"/>
                                     </Form.Group>
 
                                     <Form.Group className="formGroup2">
                                         <Form.Label className="textlabel textLabel2">Sex</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={sex} onChange={handleSetSex} type="text" />
+                                        <Form.Control className="textentry" autoComplete="off" value={sex} onChange={handleSetSex} type="text" placeholder="Sex" />
                                     </Form.Group>
                                 </div>
 
@@ -165,12 +249,12 @@ export default function PatientSignUp() {
                                 <div className="outerDiv">
                                     <Form.Group className="formGroup1">
                                         <Form.Label className="textlabel textLabel1">Username</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={username} onChange={handleSetUsername} type="text" />
+                                        <Form.Control className="textentry" autoComplete="off" value={username} onChange={handleSetUsername} type="text" placeholder="Username"/>
                                     </Form.Group>
 
                                     <Form.Group className="formGroup2">
                                         <Form.Label className="textlabel textLabel2" style={{ fontSize: '1em' }}>Blood Type</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={blood} onChange={handleSetBlood} type="text" />
+                                        <Form.Control className="textentry" autoComplete="off" value={blood} onChange={handleSetBlood} type="text" placeholder="Blood Type"/>
                                     </Form.Group>
                                 </div>
 
@@ -178,12 +262,12 @@ export default function PatientSignUp() {
                                 <div className="outerDiv">
                                     <Form.Group className="formGroup1">
                                         <Form.Label className="textlabel textLabel1">Email</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={email} onChange={handleSetEmail} type="email" />
+                                        <Form.Control className="textentry" autoComplete="off" value={email} onChange={handleSetEmail} type="email" placeholder="Email"/>
                                     </Form.Group>
 
                                     <Form.Group className="formGroup2">
                                         <Form.Label className="textlabel textLabel2">Height</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={height} onChange={handleSetHeight} type="text" />
+                                        <Form.Control className="textentry" autoComplete="off" value={height} onChange={handleSetHeight} type="text" placeholder="Height" />
                                     </Form.Group>
                                 </div>
 
@@ -196,7 +280,7 @@ export default function PatientSignUp() {
 
                                     <Form.Group className="formGroup2">
                                         <Form.Label className="textlabel textLabel2">Weight</Form.Label>
-                                        <Form.Control className="textentry" autoComplete="off" value={weight} onChange={handleSetWeight} type="text" />
+                                        <Form.Control className="textentry" autoComplete="off" value={weight} onChange={handleSetWeight} type="text" placeholder="Weight"/>
                                     </Form.Group>
                                 </div>
 
@@ -218,34 +302,46 @@ export default function PatientSignUp() {
                                 List any current or past prescriptions
                             </div>
                         </div>
-                        <div style={{flex: 10, display: "flex", flexDirection: "row", marginTop: "1%", marginRight: "5%"}}>
+                        <div style={{flex: 10, display: "flex", flexDirection: "row", marginTop: "1%", marginRight: "5%", width:"100%"}}>
                             <div className = "rightsmallbackground" style ={{flex: 1.5, display: "flex", flexDirection: "column", marginLeft: "5%", height: "45vh"}}>
                                 <div style = {{flex: 8, display: "flex", flexDirection: "column"}}>
                                     <Form.Group className="formGroup1" style = {{flex: 1, width: "100%"}}>
                                         <div style = {{display: "flex", flexDirection: "row", margin: "4%", justifyContent: "space-between"}}>
-                                            <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                            <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                        </div>
-                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-                                            <Form.Control style={{ width: '90%', height: '75%' }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                        </div>
+                                            <Form.Control className="textentry" autoComplete="off" value={condition1} onChange={handleSetCondition1} type="text" placeholder="Condition"/>
+                                              <select className="textentry" value={type1} onChange={handleSetType1}>
+                                            {typeOptions.map((option, index) => (
+                                                <option key={index} value={option}>{option}</option>
+                                            ))}
+                                        </select>
+                                                                        </div>
+                                                                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
+                                                                            <Form.Control style={{ width: '90%', height: '75%' }} className="textentry" autoComplete="off" value={description1} onChange={handleSetDescription1} type="text" placeholder="Description" />
+                                                                        </div>
                                     </Form.Group>
                                     <Form.Group className="formGroup1" style = {{flex: 1, width: "100%"}}>
                                         <div style = {{display: "flex", flexDirection: "row", margin: "4%", justifyContent: "space-between"}}>
-                                            <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                            <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                            <Form.Control className="textentry" autoComplete="off" value={condition2} onChange={handleSetCondition2} type="text" placeholder="Condition"/>
+                                            <select className="textentry" value={type2} onChange={handleSetType2}>
+                                            {typeOptions.map((option, index) => (
+                                                <option key={index} value={option}>{option}</option>
+                                            ))}
+                                        </select>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-                                            <Form.Control style={{ width: '90%', height: '75%' }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                            <Form.Control style={{ width: '90%', height: '75%' }} className="textentry" autoComplete="off" value={description2} onChange={handleSetDescription2} type="text"  placeholder="Description"/>
                                         </div>
                                     </Form.Group>
                                     <Form.Group className="formGroup1" style = {{flex: 1, width: "100%"}}>
                                         <div style = {{display: "flex", flexDirection: "row",margin: "4%", justifyContent: "space-between"}}>
-                                            <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                            <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                            <Form.Control className="textentry" autoComplete="off" value={condition3} onChange={handleSetCondition3} type="text"  placeholder="Condition"/>
+                                            <select className="textentry" value={type3} onChange={handleSetType3}>
+                                            {typeOptions.map((option, index) => (
+                                                <option key={index} value={option}>{option}</option>
+                                            ))}
+                                        </select>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
-                                            <Form.Control style={{ width: '90%', height: '75%' }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                            <Form.Control style={{ width: '90%', height: '75%' }} className="textentry" autoComplete="off" value={description3} onChange={handleSetDescription3} type="text" placeholder="Description"/>
                                         </div>
                                     </Form.Group>
                                 </div>
@@ -255,43 +351,35 @@ export default function PatientSignUp() {
                                 </Button>
                                 </div>
                             </div>
-                            <div className = "rightsmallbackground" style ={{flex: 1, display: "flex", flexDirection: "column", marginLeft: "5%", height: "45vh"}} >
+                            <div className = "rightsmallbackground" style ={{flex: 1, display: "flex", flexDirection: "column", marginLeft: "5%", height: "45vh", width:"100%"}} >
                                 <Form.Group className="formGroup1" style = {{flex: 1, width: "100%", margin: "1%"}}>
                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left', height: '100%', marginLeft: "5%"}}>
-                                        <Form.Control style={{ width: '60%', height: '65%' }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                        <Form.Control style={{ width: '60%', height: '65%' }} className="textentry" autoComplete="off" value={perscription1} onChange={handleSetPerscription1} type="text" placeholder="Medication"/>
                                     </div>
                                     <div style = {{display: "flex", flexDirection: "row", margin: "4%", justifyContent: "space-between"}}>
-                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={dosage1} onChange={handleSetDosage1} type="text" placeholder="Dosage"/>
+                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={frequency1} onChange={handleSetFrequency1} type="text"  placeholder="Frequency"/>
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="formGroup1" style = {{flex: 1, width: "100%"}}>
                                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left', height: '100%', marginLeft: "5%"}}>
-                                        <Form.Control style={{ width: '60%', height: '65%' }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                        <Form.Control style={{ width: '60%', height: '65%' }} className="textentry" autoComplete="off" value={perscription2} onChange={handleSetPerscription2} type="text" placeholder="Medication"/>
                                     </div>
                                     <div style = {{display: "flex", flexDirection: "row", margin: "4%", justifyContent: "space-between"}}>
-                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={dosage2} onChange={handleSetDosage2} type="text" placeholder="Dosage"/>
+                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={frequency2} onChange={handleSetFrequency2} type="text"  placeholder="Frequency"/>
                                     </div>
                                 </Form.Group>
                                 <Form.Group className="formGroup1" style = {{flex: 1, width: "100%", margin: "1%"}}>
                                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left', height: '100%', marginLeft: "5%"}}>
-                                        <Form.Control style={{ width: '60%', height: '65%' }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                        <Form.Control style={{ width: '60%', height: '65%' }} className="textentry" autoComplete="off" value={perscription3} onChange={handleSetPerscription3} type="text" placeholder="Medication"/>
                                     </div>
                                     <div style = {{display: "flex", flexDirection: "row", margin: "4%", justifyContent: "space-between"}}>
-                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={dosage3} onChange={handleSetDosage3} type="text" placeholder="Dosage"/>
+                                        <Form.Control style = {{flex: 1}} className="textentry" autoComplete="off" value={frequency3} onChange={handleSetFrequency3} type="text" placeholder="Frequency"/>
                                     </div>
                                 </Form.Group>
-                                <Form.Group className="formGroup1" style = {{flex: 1, width: "100%"}}>
-                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left', height: '100%', marginLeft: "5%"}}>
-                                        <Form.Control style={{ width: '60%', height: '65%' }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                    </div>
-                                    <div style = {{display: "flex", flexDirection: "row", margin: "4%", justifyContent: "space-between"}}>
-                                        <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                        <Form.Control className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
-                                    </div>
-                                </Form.Group>
+                                
                                 <div style = {{flex: .5}}>
                                     <Button className="smallButton" style = {{marginLeft: "4%", marginTop: "2%", height: "60%", width: "50%"}}variant="primary">
                                         Add new prescription
@@ -300,12 +388,12 @@ export default function PatientSignUp() {
                             </div>
                         </div>
                         <div style={{flex: 3, display: "flex", flexDirection: "column"}}>
-                            <Form.Label style = {{flex: 1, marginLeft: "4%", marginTop: "2%", marginBottom: "1%"}}>List any drug allergies</Form.Label>
-                            <div style={{flex: 5, display: "flex", flexDirection: "row", margin: "2.5%"}}>
-                                <div classname = "righttitles" style ={{flex: 8, marginRight: "4%"}}>
-                                    <Form.Control style={{ width: '100%', height: '100%',  }} className="textentry" autoComplete="off" value={password} onChange={handleSetPassword} type="text" />
+                            <Form.Label style = {{flex: 1, marginLeft: "4%", marginTop: "7%", marginBottom: "1%"}}>List any drug allergies</Form.Label>
+                            <div style={{flex: 5, display: "flex", flexDirection: "row", margin: "0px"}}>
+                                <div classname = "" style ={{flex: 8, marginRight: "4%"}}>
+                                    <Form.Control style={{ width: '80%', height: '100%',  }} className="textentry" autoComplete="off" value={alergies} onChange={handleSetAlergies} type="text" />
                                 </div>
-                                <Button onClick={make} className="createButton" style = {{flex: 3}} variant="primary">
+                                <Button onClick={make} className="createButton" style = {{width: '80%', height: '50%',flex: 3, marginTop:"50px"}} variant="primary">
                                 Create Account
                                 </Button>
                             </div>

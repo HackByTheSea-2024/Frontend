@@ -4,8 +4,8 @@ import Login from "./pages/Login";
 import HomePageP from "./pages/HomeP";
 import PatientPage from "./pages/PatientPage";
 import SpeechRecog from "./pages/SpeechRecog";
-import DoctorPortal from "./pages/DoctorPage";
-import PatientSignUp from "./pages/PatientSignUp";
+
+import PatientSignUpPage from "./pages/PatientSignUpPage";
 import DoctorPage from "./pages/DoctorPage";
 import ChatPage from "./pages/ChatPage";
 import FormsPage from "./pages/FormsPage";
@@ -36,7 +36,7 @@ function App() {
             content = <FormsPage />;
             break;
         case "/patientlogin":
-            content = <PatientSignUp />;
+            content = <PatientSignUpPage />;
             break;
         // Add more cases for other pages
         default:

@@ -4,12 +4,12 @@ import PatientSignUp from "../components/patientsignup/PatientSignUp";
 
 import "../components/components.css";
 
-export default function PatientLoginPage() {
+export default function PatientSignUpPage() {
     return (
         <div className="full-height-container gradient-background">
             <div style={{display:"flex", flexDirection:"column"}}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    <div style={{ marginBottom: 150 }}>
+                    <div style={{ marginBottom: 0 }}>
                         <NavBar />
                     </div>
                 </div>
