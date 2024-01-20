@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../components/components.css";
 import PatientRow from "./PatientRow";
 import { getDoctorPatientApi, getDoctorNameApi } from "../../Api";
+import {Table} from "antd";
 
 function DoctorPortal() {
 
@@ -23,6 +24,36 @@ function DoctorPortal() {
       
     },[]);
 
+    const columns = [
+        {
+          title: "Patient Name",
+          dataIndex: "firstName",
+          key: "name",
+          responsive: ["sm", "md", "lg", "xl"],
+          render: (name) => <h4 className="text-[15px]">{name}</h4>,
+        },
+        {
+            title: "Date of Birth",
+            dataIndex: "DOB",
+            key: "dob",
+            responsive: ["sm", "md", "lg", "xl"],
+            render: (name) => <h4 className="text-[15px]">{name}</h4>,
+          },
+          {
+            title: "Sex",
+            dataIndex: "sex",
+            key: "sex",
+            responsive: ["sm", "md", "lg", "xl"],
+            render: (name) => <h4 className="text-[15px]">{name}</h4>,
+          },
+          {
+            title: "Height",
+            dataIndex: "height",
+            key: "height",
+            responsive: ["sm", "md", "lg", "xl"],
+            render: (name) => <h4 className="text-[15px]">{name}</h4>,
+          },
+    ]
     
 
 
@@ -58,19 +89,24 @@ function DoctorPortal() {
                     background: "rgba(255, 255, 255, 0.70)",
                     boxShadow: "0px 3px 3px 4px rgba(0, 0, 0, 0.25)",
                     width: "1367px",
-                    height: "556px",
+                    height: "auto", // Changed to 'auto' to accommodate variable content length
                     display: "flex",
+                    flexDirection: "column", // Added for vertical layout
                     padding: "43px",
+                    overflow: "auto" // Added in case content exceeds container height
                 }}
             >
-                <PatientRow
-                    name="Tarun Submarine"
-                    patient_id="12345678"
-                    DOB="01/01/01"
-                    sex="Submarine"
-                    height="12"
-                    weight="12"
-                />
+            {data && (
+                    <Table
+                    
+                    columns={columns}
+                    dataSource={data}
+    
+            
+                    
+                    />
+                )}
+             
             </div>
         </div>
     );
