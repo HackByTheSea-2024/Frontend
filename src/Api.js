@@ -61,10 +61,7 @@ export const getDoctorPatientApi = async () => {
       }
   }
 
-  export const getDoctorPatientApi= async () => {
-    let exampleID = "65ab90bb564175621335500b"
-    let message = url + endpoints.getDoctorPatients +"?_id=" + exampleID;
-      try{
+
 
 export const getFirstNameApi = async () => {
     let exampleID = "65ab8a02bbdc95ede8711ade";
