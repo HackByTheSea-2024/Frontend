@@ -4,7 +4,7 @@ import NavBar from "../components/nav/NavBar";
 import axios from "axios";
 import useAuth from "../components/hooks/useAuth";
 
-export default function DoctorLogin() {
+export default function PatientLogin() {
     const {setAuth} = useAuth()
 
     const [username, setUsername] = useState('');
@@ -13,25 +13,21 @@ export default function DoctorLogin() {
     const handleSetUsername = event => setUsername(event.target.value);
     const handleSetPassword = event => setPassword(event.target.value);
 
-    const navigateToPatientPage = () => {
-        window.location.href = '/patient'; 
-    };
-
     function login(){
         const data = { username: String(username), password: String(password)};
-        axios.post('https://vitalsyncbackend-c6oszgtd6a-uw.a.run.app/api/authDoctorPassword', data)
+        axios.post('https://vitalsyncbackend-c6oszgtd6a-uw.a.run.app/api/authPatientPassword', data)
             .then (response => {
                 let _id = response.data._id
                 let email = response.data.email
                 setAuth({_id, email, type: "Doctor"})
-            window.location.href = "/doctor"
+            window.location.href = "/patient"
             })
             .catch(err => {
                 console.log("Error Try Again")
             })
     }
     function newUser(){
-        window.location.href = "/doctor/SignUp"
+        window.location.href = "/patient/SignUp"
     }
 
     return(
@@ -43,7 +39,7 @@ export default function DoctorLogin() {
 
             <div className="center-container">
                 <div className="rectangle">
-                    <h1 className="mainFont intermediaryFont form-group">Doctor Login</h1>
+                    <h1 className="mainFont intermediaryFont form-group">Patient Login</h1>
                     <div className="form-group">
                         <label htmlFor="email" className="mainFont">Username/Email</label>
                         <input type="text" id="email" onChange={handleSetUsername} className="input" />
