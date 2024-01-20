@@ -1,8 +1,17 @@
+
 import React, { useState } from 'react';
 import './App.css';
 import Login from './pages/Login';
 import HomePageP from './pages/HomeP';
 import PatientPage from './pages/PatientPage';
+import SpeechRecog from "./pages/SpeechRecog";
+
+const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const recognizer = new SpeechRecognition();
+recognizer.continuous = true;
+recognizer.interimResults = true;
 
 function App() {
   
@@ -19,14 +28,11 @@ function App() {
     default:
       content = <div>Page not found</div>;
   }
-
   return (
-    <div className="App">
-      <main>
-        {content}
-      </main>
-    </div>
-  );
+        <div className="App">
+            <main>{content}</main>
+        </div>
+    );
 }
 
 export default App;
