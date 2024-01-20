@@ -1,42 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../components/components.css";
+import axios from 'axios';
+import { getAiResponseApi } from "../../Api";
+import { FaVolumeUp } from 'react-icons/fa'; // Importing speaker icon
 
 function AIChat() {
-    return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-            }}
-            className="alignLeft pl-10 pr-10"
-        >
-            <p
-                style={{
-                    width: "1000px",
-                    height: "85px",
-                    flexShrink: "0",
-                    color: "#212650",
+    const [userInput, setUserInput] = useState('');
+    const [isSpeakerActive, setIsSpeakerActive] = useState(false); // State to manage speaker icon
+    const [conversation, setConversation] = useState([
+        { sender: 'user', message: "Hi, I’m your personal health analyst. I help you fill out forms to make sure your doctor is up to date on your health." }
+    ]);
 
-                    fontFamily: "Poppins",
-                    fontSize: "36px",
-                    fontStyle: "normal",
-                    fontWeight: "600",
-                    lineHeight: "90px",
-                }}
-            >
-                Personal Health Analysis Assistant
-            </p>
-            <div
-                style={{
-                    borderRadius: "43px",
-                    background: "rgba(255, 255, 255, 0.70)",
-                    boxShadow: "0px 3px 3px 4px rgba(0, 0, 0, 0.25)",
-                    width: "1367px",
-                    height: "396px",
-                    display: "flex",
-                    padding: "43px",
-                }}
-            ></div>
+    const handleInputChange = (event) => {
+        setUserInput(event.target.value);
+    };
+
+    const toggleSpeaker = () => {
+        setIsSpeakerActive(!isSpeakerActive); // Toggle the speaker state
+    };
+
+    const fetchResponse = async (userMessage) => {
+        try {
+            const response = await getAiResponseApi(userMessage);
+            setConversation(prev => [...prev, { sender: 'user', message: response }]);
+        } catch (error) {
+            console.error("Error fetching AI response:", error);
+        }
+    };
+
+    const sendMessage = async () => {
+        const userMessage = userInput.trim();
+        if (userMessage) {
+            setConversation(prev => [...prev, { sender: 'bot', message: userMessage }]);
+            setUserInput('');
+            await fetchResponse(userMessage);
+        }
+    };
+
+    return (
+        <div style={{ width: "80%" }} className="ai-chat-container">
+            <div className="chat-messages">
+                {conversation.map((chat, index) => (
+                    <div
+                        key={index}
+                        className={`message ${chat.sender === 'user' ? 'userMessage' : 'botMessage'}`}
+                    >
+                        {chat.message}
+                    </div>
+                ))}
+            </div>
+            <div className="input-container">
+                <FaVolumeUp
+                    onClick={toggleSpeaker}
+                    style={{ color: isSpeakerActive ? 'red' : 'blue', cursor: 'pointer', marginRight: '10px' }}
+                />
+                <input
+                    type="text"
+                    value={userInput}
+                    onChange={handleInputChange}
+                    onKeyPress={event => event.key === 'Enter' && sendMessage()}
+                    placeholder="Type your message..."
+                />
+                <button onClick={sendMessage}>Send</button>
+            </div>
         </div>
     );
 }

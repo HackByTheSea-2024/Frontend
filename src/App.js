@@ -4,9 +4,10 @@ import Login from "./pages/Login";
 import HomePageP from "./pages/HomeP";
 import PatientPage from "./pages/PatientPage";
 import SpeechRecog from "./pages/SpeechRecog";
-import DoctorPortal from "./pages/DoctorPage";
+import DoctorPage from "./pages/DoctorPage";
 import ChatPage from "./pages/ChatPage";
 import FormsPage from "./pages/FormsPage";
+
 
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -28,7 +29,7 @@ function App() {
             content = <HomePageP />;
             break;
         case "/doctor":
-            content = <DoctorPortal />;
+            content = <DoctorPage />;
             break;
         case "/patient/forms":
             content = <FormsPage />;
