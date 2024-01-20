@@ -110,21 +110,21 @@ export default function PatientSignUp() {
           .catch(err => {
             console.log(err)
             })
-      }
+    }
 
-      function login(user, pwd){
-        const data = { username: String(user), password: String(pwd)};
-        axios.post('https://vitalsyncbackend-c6oszgtd6a-uw.a.run.app/api/authPatientPassword', data)
-            .then (response => {
-              let _id = response.data._id
-              let email = response.data.email
-              setAuth({_id, email, type: "Patient"})
-            window.location.href = "/patient"
-            })
-            .catch(err => {
-              console.log("Error Try Again")
-            })
-      }
+    function login(user, pwd){
+    const data = { username: String(user), password: String(pwd)};
+    axios.post('https://vitalsyncbackend-c6oszgtd6a-uw.a.run.app/api/authPatientPassword', data)
+        .then (response => {
+            let _id = response.data._id
+            let email = response.data.email
+            setAuth({_id, email, type: "Patient"})
+        window.location.href = "/patient"
+        })
+        .catch(err => {
+            console.log("Error Try Again")
+        })
+    }
 
     return(
         <div style={{ display: "flex", flexDirection: "row", marginTop: "1%", height: "65vh" }}>

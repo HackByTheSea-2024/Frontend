@@ -194,6 +194,91 @@ export default function PatientPortal() {
         }
     };
 
+    const [devices, setDevices] = useState([]);
+    const [connectedDevice, setConnectedDevice] = useState(null);
+// Define the UUIDs for the services and characteristics
+const UUID16_SVC_ECG_SERVICE = "6a400001-b5a3-f393-e0a9-e50e24dcca9e";
+const UUID16_CHR_LA_LL_VOLTAGE_CHARACTERISTIC = "6a400002-b5a3-f393-e0a9-e50e24dcca9e";
+const UUID16_CHR_RA_LL_VOLTAGE_CHARACTERISTIC = "6a400003-b5a3-f393-e0a9-e50e24dcca9e";
+
+const onDeviceFound = (event) => {
+    const device = event.device;
+    setDevices(prevDevices => [...prevDevices, device]);
+};
+
+const scanForDevices = async () => {
+    try {
+        const options = {
+            filters: [
+                { services: [UUID16_SVC_ECG_SERVICE] }
+            ],
+            optionalServices: [UUID16_CHR_LA_LL_VOLTAGE_CHARACTERISTIC, UUID16_CHR_RA_LL_VOLTAGE_CHARACTERISTIC]
+        };
+        const device = await navigator.bluetooth.requestDevice(options);
+
+        if (device.name && !device.name.includes("Unknown")) {
+            setDevices(prevDevices => [...prevDevices, device]);
+        }
+    } catch (error) {
+        console.error('Error in scanning for devices:', error);
+    }
+};
+
+const onCharacteristicValueChanged1 = (event) => {
+    const value = event.target.value;
+    const bpmValue = value.getUint16(0, true); // Modify this line based on how your data is structured
+    setcurrentBPM(bpmValue); // Update currentBPM
+};
+
+const onCharacteristicValueChanged2 = (event) => {
+    const value = event.target.value;
+    const bpmValue = value.getUint16(0, true); // Modify this line based on how your data is structured
+    setaverageBPM(bpmValue);
+};
+
+const connectToDevice = async (device) => {
+    try {
+        const server = await device.gatt.connect();
+        const service = await server.getPrimaryService(UUID16_SVC_ECG_SERVICE);
+
+        const laLlCharacteristic = await service.getCharacteristic(UUID16_CHR_LA_LL_VOLTAGE_CHARACTERISTIC);
+        await laLlCharacteristic.startNotifications();
+        laLlCharacteristic.addEventListener('characteristicvaluechanged', onCharacteristicValueChanged2);
+
+        const raLlCharacteristic = await service.getCharacteristic(UUID16_CHR_RA_LL_VOLTAGE_CHARACTERISTIC);
+        await raLlCharacteristic.startNotifications();
+        raLlCharacteristic.addEventListener('characteristicvaluechanged', onCharacteristicValueChanged1);
+
+        // Store a reference to the characteristics for later use (e.g., removing event listeners)
+        setConnectedDevice({ 
+            device,
+            laLlCharacteristic,
+            raLlCharacteristic
+        });
+
+    } catch (error) {
+        console.error('Error in connecting to device:', error);
+    }
+};
+
+// Add useEffect to clean up when the component unmounts or the connected device changes
+useEffect(() => {
+    return () => {
+        // Disconnect logic and remove event listeners
+        if (connectedDevice) {
+            const { laLlCharacteristic, raLlCharacteristic } = connectedDevice;
+            if (laLlCharacteristic) {
+                laLlCharacteristic.removeEventListener('characteristicvaluechanged', onCharacteristicValueChanged2);
+            }
+            if (raLlCharacteristic) {
+                raLlCharacteristic.removeEventListener('characteristicvaluechanged', onCharacteristicValueChanged1);
+            }
+            // Additional disconnect logic...
+        }
+    };
+}, [connectedDevice]);
+
+
     return (
         <div
             style={{
@@ -331,8 +416,25 @@ export default function PatientPortal() {
                     </div>
                 </div>
                 <div style={{ flex: 0.1 }}></div>
-                <div style={{ flex: 1 }} className="roundedBar w-full">
-                    {data && <Table columns={columns} dataSource={data} />}
+                <div style={{flex: 1, display:"flex", flexDirection:"column"}}>
+                    <div style={{ flex: 6 }} className="roundedBar w-full">
+                        {data && <Table columns={columns} dataSource={data} />}
+                    </div>
+                    <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", flexGrow: 1 }} >
+                        <button onClick={scanForDevices}>Scan for Devices</button>
+                        <ul>
+                            {devices.map((device, index) => (
+                                <li key={index} onClick={() => connectToDevice(device)}>
+                                    {device.name || 'Unknown Device'}
+                                </li>
+                            ))}
+                        </ul>
+                        {connectedDevice && (
+                            <div>
+                                Connected to {connectedDevice.device.name}: Battery Level {connectedDevice.batteryLevel}%
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
